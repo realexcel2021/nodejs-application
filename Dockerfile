@@ -1,6 +1,15 @@
-FROM node:10
-WORKDIR /usr/app
-COPY . .
+FROM node:slim
+
+WORKDIR /app
+
+COPY *.json .
+
 RUN npm install
-EXPOSE 9981
-CMD ["node","app.js"]
+
+COPY . /app/
+
+EXPOSE 3000
+
+ENV PORT=3000
+
+ENTRYPOINT [ "npm", "start" ]
